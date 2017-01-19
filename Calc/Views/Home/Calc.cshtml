@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewBag.Title = "Calc";
+}
+
+<h2>Calc</h2>
+<table >
+    <tr>
+        <td width="70" class="btn btn-primary btn-lg" value="1" id="btn1">1</td>
+        <td width="70" class="btn btn-primary btn-lg">2</td>
+        <td width="70"class="btn btn-primary btn-lg">3</td>
+        <td width="70" class="btn btn-primary btn-lg">+</td>
+    </tr>
+
+    <tr>
+        <td width="70" class="btn btn-primary btn-lg">4</td>
+        <td width="70" class="btn btn-primary btn-lg">5</td>
+        <td width="70" class="btn btn-primary btn-lg">6</td>
+        <td width="70" class="btn btn-primary btn-lg">-</td>
+    </tr>
+
+    <tr>
+        <td width="70" class="btn btn-primary btn-lg">7</td>
+        <td width="70" class="btn btn-primary btn-lg">8</td>
+        <td width="70" class="btn btn-primary btn-lg">9</td>
+        <td width="70" class="btn btn-primary btn-lg">*</td>
+    </tr>
+
+    <tr>
+        <td width="70" class="btn btn-primary btn-lg">,</td>
+        <td width="70" class="btn btn-primary btn-lg">0</td>
+        <td width="70" align="center" class="btn btn-primary btn-lg">DEL</td>
+        <td width="70" class="btn btn-primary btn-lg">=</td>
+    </tr>
+</table>
+
+
+<script>
+    window.onload = function () {
+        document.getElementById('btn1').addEventListener('click', function () {
+            alert(123);
+            urlToHandler = 'https://localhost:44328/Home/Calc/ReceiveClick/';
+            jsonData = '{ "num":"1"}';
+            $.ajax({
+                url: urlToHandler,
+                data: jsonData,
+                dataType: 'json',
+                type: 'POST',
+                contentType: 'application/json',
+                success: function (data) {
+                    setAutocompleteData(data.responseDateTime);
+                },
+                error: function (data, status, jqXHR) {
+                    alert('OH! There was an error.' + jqXHR);
+                }
+            });
+        });
+    }
+</script>
